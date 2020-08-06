@@ -36,11 +36,14 @@
       </div>
     </header>
     <body>
-      <%#= form_for @book do |f|  %>
-        <%#= f.select :faculty, [["User", "User"], ["Book", "Book"]] %>
-        <%# f.select :faculty, [["完全一致","完全一致"],["前方一致","前方一致"],["後方一致","後方一致"],["部分一致","部分一致"]] %>
-        <%#= f.submit "検索" %>
-      <%#end %>
+      <% if user_signed_in? %>
+        <%= form_tag(search_path, method: :get) do %>
+          <%= select_tag 'range', options_for_select([['User','1'],['Book','2']]) %>
+          <%= select_tag 'search', options_for_select([["前方一致","forward_match"],["後方一致","backward_match"],["完全一致","perfect_match"],["部分一致","partial_match"]]) %>
+          <%= text_field_tag :word %>
+          <%= submit_tag "検索" %>
+        <% end %>
+      <% end %>
     </body>
 
     <div class="container">

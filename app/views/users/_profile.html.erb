@@ -14,8 +14,8 @@
 	<tr>
 		<th>follows</th>
 		<th>
-			<%= link_to follow_user_path do %>
-			<%= @user.follower.count %>
+			<%= link_to user_follow_path(user.id) do %>
+			<%= user.follower.count %>
 			<% end %>
 		</th>
 	</tr>
@@ -23,8 +23,8 @@
 	<tr>
 		<th>followers</th>
 		<th>
-			<%= link_to followers_user_path do %>
-			<%= @user.followed.count %>
+			<%= link_to user_followers_path(user.id) do %>
+			<%= user.followed.count %>
 			<% end %>
 			</th>
 	</tr>
